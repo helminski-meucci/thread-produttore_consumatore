@@ -6,8 +6,10 @@ public class Main {
 
         Prelevatore t1 = new Prelevatore(conto, "Cliente-1", 700);
         Prelevatore t2 = new Prelevatore(conto, "Cliente-2", 500);
+        Versatore v1 = new Versatore(conto, "Versatore-1", 300);
 
         t1.start();
+        v1.start();
         t2.start();
     }
 }

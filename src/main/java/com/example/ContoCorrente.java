@@ -35,4 +35,23 @@ public class ContoCorrente {
             semaforo.release();           // RILASCIA L'USO DELLA RISPRSA ( METTE IL SEMAFORO A VERDE)
         }
     }
+
+    public void versa(int importo) {
+
+        // BLOCCO SULLA RISORSA ACQUISITA ( METTE IL SEMAFORO A ROSSO)
+        try {
+            semaforo.acquire();
+
+            // CODICE DI SEZIONE CRITICA ( E' USATO DAI THREAD )
+            System.out.println(Thread.currentThread().getName() + " tenta di versare " + importo + "€");
+            saldo += importo;
+            System.out.println(Thread.currentThread().getName() + " versamento riuscito!");
+            System.out.println("Saldo attuale: " + saldo + "€");
+
+            // FINE CODICE DI SEZIONE CRITICA 
+        } catch (InterruptedException e) { }
+        finally {
+            semaforo.release();           // RILASCIA L'USO DELLA RISPRSA ( METTE IL SEMAFORO A VERDE)
+        }
+    }
 }
